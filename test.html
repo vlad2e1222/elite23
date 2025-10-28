@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест Telegram</title>
+</head>
+<body>
+    <button onclick="testSend()">Тест отправки в Telegram</button>
+    <script>
+    function testSend() {
+        const botToken = '8207807954:AAHB3H00CMop2r87ij7v-8zWHE3-omlJId4';
+        const chatId = '1160945554';
+        const text = 'Тестовое сообщение: ' + new Date().toLocaleString();
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+        
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok) {
+                    alert('✅ Тест успешен! Сообщение в боте.');
+                } else {
+                    alert('❌ Ошибка: ' + data.description);
+                }
+            });
+    }
+    </script>
+</body>
+</html>
